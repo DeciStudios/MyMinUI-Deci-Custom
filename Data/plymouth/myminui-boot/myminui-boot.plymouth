@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=MyMinUI Boot
+Description=This is a plymouth theme which simply displays an image
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/myminui-boot
+ScriptFile=/usr/share/plymouth/themes/myminui-boot/myminui-boot.script

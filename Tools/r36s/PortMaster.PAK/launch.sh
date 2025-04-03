@@ -1,0 +1,1 @@
+/bin/sh /MyMinUI/Apps/PortMaster/launch.sh
