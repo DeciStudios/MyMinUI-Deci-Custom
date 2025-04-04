@@ -6,7 +6,7 @@
 #---------------------------------++
 
 #Shell setup start
-CURR_TTY="/dev/tty1" #CHANGE TO TTY1!!!!!
+CURR_TTY="/dev/tty0" #CHANGE TO TTY1!!!!!
 
 sudo chmod 666 $CURR_TTY
 reset

@@ -6,6 +6,7 @@
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 
 controlfolder="/MyMinUI/Apps/PortMaster/PortMaster"
+cp -r "$controlfolder/../.to_overwrite/*" "$controlfolder/"
 
 source $controlfolder/control.txt
 
