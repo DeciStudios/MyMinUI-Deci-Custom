@@ -23,7 +23,7 @@ There are several reasons behind the creation of this project:
 
 ### 🎨 Plymouth Selector
 
-A remake of the original `Plymouth-cp.sh` script, now written in **Lua** with **Love2D**. This tool uses a custom MinUI-like interface that I built from scratch. It allows you to:
+A remake of the original [Plymouth-cp.sh](https://drive.google.com/file/d/1SR_N3XlwQMJTkAR9RnmhG-ZfZOk_3vwq/view?usp=sharing) script by [Sucharek233](https://www.reddit.com/r/R36S/comments/1gnri3v/plymouth_theme_selector/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button), now written in **Lua** with **Love2D**. This tool uses a custom MinUI-like interface that I built from scratch. It allows you to:
 
 - Browse and preview available Plymouth themes
 - Apply a selected theme
