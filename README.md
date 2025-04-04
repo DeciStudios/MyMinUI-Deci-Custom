@@ -4,15 +4,6 @@
 A collection of custom tools and PAKs designed for and ported to **MyMinUI**.
 ---
 
-## 📚 Table of Contents
-
-- [Why?](#why)
-- [Tools and Features](#tools-and-features)
-  - [Plymouth Selector](#plymouth-selector)
-  - [PortMaster](#portmaster)
-
----
-
 ## 🧐 Why?
 
 There are several reasons behind the creation of this project:
