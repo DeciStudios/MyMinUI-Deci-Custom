@@ -1,7 +1,9 @@
 ---
 # **MyMinUI-Deci-Custom**
 
-A collection of custom tools and PAKs designed for and ported to **MyMinUI**.
+A collection of custom tools and PAKs designed for and ported to **[MyMinUI](https://github.com/Turro75/MyMinUI)**.
+
+Currently the PAKs only supports the r36s, however, almost everything should work on other MyMinUI-supported handhelds. Simply change the `r36s` folders' names to the corresponding ones you use in your MyMinUI install.
 ---
 
 ## 🧐 Why?
