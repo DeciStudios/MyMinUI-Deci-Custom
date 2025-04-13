@@ -6,27 +6,24 @@
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 
 controlfolder="/MyMinUI/Apps/PortMaster/PortMaster"
-cp -r "$controlfolder/../.to_overwrite/*" "$controlfolder/"
+cp -r "$controlfolder/../.dat/mods/." "$controlfolder/"
+
 
 source $controlfolder/control.txt
 
 
 get_controls
 
-## TODO: Change to PortMaster/tty when Johnnyonflame merges the changes in,
-CUR_TTY=/dev/tty0
 
 cd "$controlfolder"
 
 > "$controlfolder/log.txt" && exec > >(tee "$controlfolder/log.txt") 2>&1
 
 export TERM=linux
-$ESUDO chmod 666 $CUR_TTY
-printf "\033c" > $CUR_TTY
 
 source "$controlfolder/utils/pmsplash.txt"
 
-echo "Starting PortMaster." > $CUR_TTY
+$controlfolder/../.dat/textdisplay.sh "Starting PortMaster."
 
 $ESUDO chmod -R +x .
 
@@ -41,20 +38,20 @@ if [ -n "$AUTOINSTALL" ]; then
 
   PortMasterDialog "messages_begin"
 
-  PortMasterDialog "message" "Auto-installation"
+  $controlfolder/../.dat/textdisplay.sh "Auto-installation"
 
   # Install the latest runtimes.zip
   if [ -f "$controlfolder/autoinstall/runtimes.zip" ]; then
-    PortMasterDialog "message" "- Installing runtimes.zip, this could take a minute or two."
+    $controlfolder/../.dat/textdisplay.sh "- Installing runtimes.zip, this could take a minute or two."
     $ESUDO unzip -o "$controlfolder/autoinstall/runtimes.zip" -d "$controlfolder/libs"
     $ESUDO rm -f "$controlfolder/autoinstall/runtimes.zip"
-    PortMasterDialog "message" "- SUCCESS: runtimes.zip"
+    $controlfolder/../.dat/textdisplay.sh "- SUCCESS: runtimes.zip"
   fi
 
   for file_name in "$controlfolder/autoinstall"/*.squashfs
   do
     $ESUDO mv -f "$file_name" "$controlfolder/libs"
-    PortMasterDialog "message" "- SUCCESS: $(basename $file_name)"
+    $controlfolder/../.dat/textdisplay.sh "- SUCCESS: $(basename $file_name)"
   done
 
   for file_name in "$controlfolder/autoinstall"/*.zip
@@ -65,9 +62,9 @@ if [ -n "$AUTOINSTALL" ]; then
 
     if [[ $(PortMasterDialogResult "install" "$file_name") == "OKAY" ]]; then
       $ESUDO rm -f "$file_name"
-      PortMasterDialog "message" "- SUCCESS: $(basename $file_name)"
+      $controlfolder/../.dat/textdisplay.sh "- SUCCESS: $(basename $file_name)"
     else
-      PortMasterDialog "message" "- FAILURE: $(basename $file_name)"
+      $controlfolder/../.dat/textdisplay.sh "- FAILURE: $(basename $file_name)"
     fi
   done
 
@@ -76,23 +73,23 @@ if [ -n "$AUTOINSTALL" ]; then
 
     if [[ $(PortMasterDialogResult "install" "$file_name") == "OKAY" ]]; then
       $ESUDO rm -f "$file_name"
-      PortMasterDialog "message" "- SUCCESS: $(basename $file_name)"
+      $controlfolder/../.dat/textdisplay.sh "- SUCCESS: $(basename $file_name)"
     else
-      PortMasterDialog "message" "- FAILURE: $(basename $file_name)"
+      $controlfolder/../.dat/textdisplay.sh "- FAILURE: $(basename $file_name)"
     fi
   fi
 
   PortMasterDialog "messages_end"
   if [ -z "$GW" ]; then
-    PortMasterDialogMessageBox "Finished running autoinstall.\n\nNo internet connection present so exiting."
+    $controlfolder/../.dat/textdisplay.sh "Finished running autoinstall.\n\nNo internet connection present so exiting."
     PortMasterDialogExit
     exit 0
   else
-    PortMasterDialogMessageBox "Finished running autoinstall."
+    $controlfolder/../.dat/textdisplay.sh "Finished running autoinstall."
     PortMasterDialogExit
   fi
 fi
-cp -r "$controlfolder/../.to_overwrite/*" "$controlfolder/"
+cp -r "$controlfolder/../.dat/mods/." "$controlfolder/"
 
 # PORTMASTER_CMDS=${PORTMASTER_CMDS:---debug}
 
@@ -107,11 +104,11 @@ while true; do
 
   $ESUDO rm -f "${controlfolder}/.pugwash-reboot"
 done
+cp -r "$controlfolder/../.to_overwrite/*" "$controlfolder/"
 
 unset LD_LIBRARY_PATH
 unset SDL_GAMECONTROLLERCONFIG
 $ESUDO systemctl restart oga_events &
-printf "\033c" > $CUR_TTY
 
 if [ -f "${controlfolder}/.emustation-refresh" ]; then
   $ESUDO rm -f "${controlfolder}/.emustation-refresh"
